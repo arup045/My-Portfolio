@@ -701,12 +701,34 @@
             color: #333;
             font-weight: 500;
             font-size: 16px;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
+            padding: 8px 15px;
+            border-radius: 5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #ff6b6b;
+            transition: width 0.3s ease;
         }
 
         .nav-links a:hover,
         .nav-links a.active {
             color: #ff6b6b;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.2);
+        }
+        
+        .nav-links a:hover::before,
+        .nav-links a.active::before {
+            width: 100%;
         }
 
         .hamburger {
@@ -1804,12 +1826,16 @@
             font-weight: 600;
             color: #333;
             margin-bottom: 10px;
+            margin-left: 40px;
+            margin-top: 5px;
         }
         
         .process-content p {
             font-size: 16px;
             line-height: 1.6;
             color: #777;
+            margin-top: 10px;
+            clear: both;
         }
         
         .process-number {
@@ -1823,9 +1849,10 @@
             align-items: center;
             justify-content: center;
             font-weight: bold;
-            top: 10px;
+            top: 20px;
             left: 10px;
             z-index: 2;
+            float: left;
         }
         
         @media screen and (max-width: 768px) {
@@ -1878,7 +1905,7 @@
 
         .portfolio-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 30px;
         }
 
@@ -1891,6 +1918,8 @@
             position: relative;
             z-index: 2;
             backdrop-filter: blur(5px);
+            width: 100%;
+            min-width: 320px;
         }
 
         .portfolio-item:hover {
@@ -1899,7 +1928,7 @@
         }
         
         .portfolio-img {
-            height: 200px;
+            height: 250px;
             background-color: rgba(238, 238, 238, 0.9);
             position: relative;
             overflow: hidden;
@@ -1942,7 +1971,7 @@
         }
 
         .portfolio-img {
-            height: 200px;
+            height: 250px;
             background-color: #eee;
         }
 
@@ -2037,10 +2066,31 @@
             text-decoration: none;
             font-size: 16px;
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,107,107,0.3));
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .social-link:hover {
             background-color: #333;
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .social-link:hover::before {
+            opacity: 1;
         }
 
         .form-group {
@@ -2093,11 +2143,32 @@
             color: #fff;
             text-decoration: none;
             font-size: 16px;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 5px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .footer-links a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #ff6b6b;
+            transition: width 0.3s ease;
         }
 
         .footer-links a:hover {
             color: #ff6b6b;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.2);
+        }
+        
+        .footer-links a:hover::before {
+            width: 100%;
         }
 
         /* Back to Top Button */
@@ -2119,6 +2190,31 @@
             visibility: hidden;
             transition: all 0.3s ease;
             z-index: 1001;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .back-to-top::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,107,107,0.3));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            background-color: #333;
+        }
+        
+        .back-to-top:hover::before {
+            opacity: 1;
         }
 
         .back-to-top.active {
@@ -2613,6 +2709,16 @@
                 </div>
                 <div class="skill-card" data-aos="fade-up" data-aos-delay="350">
                     <div class="skill-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <div class="skill-name">MongoDB</div>
+                    <div class="skill-percentage">70%</div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 70%;"></div>
+                    </div>
+                </div>
+                <div class="skill-card" data-aos="fade-up" data-aos-delay="375">
+                    <div class="skill-icon">
                         <i class="fab fa-figma"></i>
                     </div>
                     <div class="skill-name">Figma</div>
@@ -2629,6 +2735,16 @@
                     <div class="skill-percentage">85%</div>
                     <div class="skill-bar">
                         <div class="skill-progress" style="width: 85%;"></div>
+                    </div>
+                </div>
+                <div class="skill-card" data-aos="fade-up" data-aos-delay="450">
+                    <div class="skill-icon">
+                        <i class="fab fa-github"></i>
+                    </div>
+                    <div class="skill-name">Git/GitHub</div>
+                    <div class="skill-percentage">45%</div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 45%;"></div>
                     </div>
                 </div>
             </div>
@@ -2807,11 +2923,7 @@
                         <a href="#" class="portfolio-link">View Details</a>
                     </div>
                 </div>
-                <div class="portfolio-item" data-category="web">
-                    <div class="portfolio-img">
-                        <img src="https://i.pinimg.com/736x/80/b2/b9/80b2b921d3922d8054e0e66ce8ca3511.jpg" alt="Project Seven">
-                    </div>
-                </div>
+
             </div>
         </div>
     </section>
@@ -2831,7 +2943,7 @@
                         </div>
                         <div class="contact-text">
                             <h3>Location</h3>
-                            <p>Your City, Country</p>
+                            <p>Kolkata, India</p>
                         </div>
                     </div>
                     <div class="contact-item" data-aos="fade-up" data-aos-delay="200">
@@ -2840,7 +2952,7 @@
                         </div>
                         <div class="contact-text">
                             <h3>Email</h3>
-                            <p>your.email@example.com</p>
+                            <p>arupbhattacharya450@gmail.com</p>
                         </div>
                     </div>
                     <div class="contact-item" data-aos="fade-up" data-aos-delay="300">
@@ -2849,7 +2961,7 @@
                         </div>
                         <div class="contact-text">
                             <h3>Phone</h3>
-                            <p>+1 234 567 890</p>
+                            <p>+91 9083853563</p>
                         </div>
                     </div>
                     <div class="social-links" data-aos="fade-up" data-aos-delay="200">
@@ -2863,10 +2975,10 @@
                 <div class="contact-form" data-aos="fade-left" data-aos-delay="200">
                     <form id="contactForm" class="animate__animated animate__fadeInUp" data-aos="fade-up" data-aos-delay="100">
                         <div class="form-group">
-                            <input type="text" id="name" name="name" placeholder="Your Name" required>
+                            <input type="text" id="name" name="user_name" placeholder="Your Name" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" id="email" name="email" placeholder="Your Email" required>
+                            <input type="email" id="email" name="user_email" placeholder="Your Email" required>
                         </div>
                         <div class="form-group">
                             <input type="text" id="subject" name="subject" placeholder="Subject" required>
@@ -2875,6 +2987,7 @@
                             <textarea id="message" name="message" placeholder="Your Message" required></textarea>
                         </div>
                         <button type="submit" class="btn primary-btn">Send Message</button>
+                        <div id="form-status" class="mt-3" style="display: none;"></div>
                     </form>
                 </div>
             </div>
@@ -3223,12 +3336,31 @@
                 });
             });
 
-            // Form Submission
+            // EmailJS Integration
             const contactForm = document.getElementById('contactForm');
+            const formStatus = document.getElementById('form-status');
+            
+            // Initialize EmailJS
+            (function() {
+                // Add EmailJS script
+                const script = document.createElement('script');
+                script.type = 'text/javascript';
+                script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js';
+                script.async = true;
+                document.head.appendChild(script);
+                
+                script.onload = function() {
+                    emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your actual EmailJS public key
+                };
+            })();
             
             if (contactForm) {
                 contactForm.addEventListener('submit', function(e) {
                     e.preventDefault();
+                    
+                    // Show loading status
+                    formStatus.style.display = 'block';
+                    formStatus.innerHTML = '<div style="color: #ff6b6b;">Sending message...</div>';
                     
                     // Get form values
                     const name = document.getElementById('name').value;
@@ -3238,12 +3370,32 @@
                     
                     // Basic form validation
                     if (name && email && subject && message) {
-                        // In a real application, you would send this data to a server
-                        // For this demo, we'll just show an alert
-                        alert('Thank you for your message! I will get back to you soon.');
-                        contactForm.reset();
+                        // Prepare template parameters
+                        const templateParams = {
+                            user_name: name,
+                            user_email: email,
+                            subject: subject,
+                            message: message,
+                            to_email: 'aruobhattacharya450@gmail.com'
+                        };
+                        
+                        // Send email using EmailJS
+                        emailjs.send('default_service', 'template_id', templateParams) // Replace with your service ID and template ID
+                            .then(function(response) {
+                                console.log('SUCCESS!', response.status, response.text);
+                                formStatus.innerHTML = '<div style="color: green;">Thank you for your message! I will get back to you soon.</div>';
+                                contactForm.reset();
+                                
+                                // Hide status message after 5 seconds
+                                setTimeout(function() {
+                                    formStatus.style.display = 'none';
+                                }, 5000);
+                            }, function(error) {
+                                console.log('FAILED...', error);
+                                formStatus.innerHTML = '<div style="color: red;">Failed to send message. Please try again later.</div>';
+                            });
                     } else {
-                        alert('Please fill in all fields.');
+                        formStatus.innerHTML = '<div style="color: red;">Please fill in all fields.</div>';
                     }
                 });
             }
@@ -3375,4 +3527,4 @@
         });
     </script>
 </body>
-</html>
+</html
