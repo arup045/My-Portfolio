@@ -4,6 +4,148 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personal Portfolio</title>
+    <!-- Critical CSS for above-the-fold content -->
+    <style>
+        /* Critical CSS for faster initial render */
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --text-primary: #333333;
+            --text-secondary: #6c757d;
+            --accent-color: #ff6b6b;
+            --accent-hover: #ff5252;
+        }
+        
+        [data-theme="dark"] {
+            --bg-primary: #121212;
+            --bg-secondary: #1e1e1e;
+            --text-primary: #f8f9fa;
+            --text-secondary: #adb5bd;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Lexend', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        /* Header Styles - Critical for first view */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            padding: 18px 0;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        [data-theme="dark"] header {
+            background-color: rgba(18, 18, 18, 0.95);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo h1 {
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ff6b6b, #ffb88c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 8px 15px;
+            border-radius: 20px;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+        
+        /* Hero section - Critical for first view */
+        #hero {
+            padding: 150px 0 80px;
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        
+        .hero-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 60px;
+            width: 100%;
+        }
+        
+        .hero-intro {
+            flex: 1;
+            padding-right: 20px;
+        }
+        
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 400px;
+        }
+        
+        /* Preloader */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+    </style>
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
@@ -12,6 +154,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <!-- Animate.css for additional animations -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- Preload critical fonts -->
+    <link rel="preload" href="https://fonts.gstatic.com/s/lexend/v18/wlpwgwvFAVdoq2_v-6QU82RHaBBX.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://fonts.gstatic.com/s/plusjakartasans/v8/LDIbaomQNQcsA88c7O9yZ4KMCoOg4IA6-91aHEjcWuA_KU7NSg.woff2" as="font" type="font/woff2" crossorigin>
     <!-- Canvas-based particles animation -->
     <script>
     // Custom canvas-based particles implementation
@@ -610,43 +755,49 @@
             top: 0;
             left: 0;
             width: 100%;
-            background-color: var(--bg-secondary);
-            box-shadow: 0 2px 10px var(--shadow-color);
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             z-index: 1000;
-            padding: 15px 0;
+            padding: 18px 0;
             transition: all 0.3s ease;
-            backdrop-filter: var(--backdrop-blur);
+            backdrop-filter: blur(10px);
+        }
+        
+        [data-theme="dark"] header {
+            background-color: rgba(25, 25, 35, 0.95);
         }
         
         /* Theme Toggle Styles */
         .theme-toggle-wrapper {
             display: flex;
             align-items: center;
-            margin-left: 10px;
+            margin-left: 15px;
         }
         
         #theme-toggle {
             background: none;
             border: none;
             cursor: pointer;
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 18px;
             color: var(--text-primary);
-            background-color: var(--bg-card);
-            box-shadow: 0 2px 5px var(--shadow-color);
+            background-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            border: 2px solid rgba(255, 107, 107, 0.3);
         }
         
         #theme-toggle:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px var(--shadow-color);
+            transform: translateY(-3px) rotate(5deg);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+            background-color: rgba(255, 107, 107, 0.2);
         }
         
         #theme-toggle .fa-sun {
@@ -688,50 +839,43 @@
             font-size: 28px;
             font-weight: 700;
             color: var(--text-primary);
+            background: linear-gradient(135deg, #ff6b6b, #6bd4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
         }
 
         .nav-links {
             display: flex;
             list-style: none;
+            gap: 10px;
         }
 
         .nav-links li {
-            margin-left: 30px;
+            margin-left: 15px;
         }
 
         .nav-links a {
             text-decoration: none;
-            color: #333;
-            font-weight: 500;
+            color: var(--text-primary);
+            font-weight: 600;
             font-size: 16px;
-            transition: all 0.3s ease;
-            padding: 8px 15px;
-            border-radius: 5px;
+            transition: all 0.4s ease;
+            padding: 10px 18px;
+            border-radius: 8px;
             position: relative;
             overflow: hidden;
-        }
-
-        .nav-links a::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: #ff6b6b;
-            transition: width 0.3s ease;
+            display: inline-block;
+            letter-spacing: 0.5px;
+            background: transparent;
         }
 
         .nav-links a:hover,
         .nav-links a.active {
-            color: #ff6b6b;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.2);
-        }
-        
-        .nav-links a:hover::before,
-        .nav-links a.active::before {
-            width: 100%;
+            color: #fff;
+            background-color: #ff6b6b;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
         }
 
         .hamburger {
@@ -2569,12 +2713,9 @@
                     <h1>Portfolio</h1>
                 </div>
                 <ul class="nav-links" data-aos="fade-left" data-aos-delay="200">
-                    <li data-aos="fade-down" data-aos-delay="100"><a href="#header" class="active">Home</a></li>
-                    <li data-aos="fade-down" data-aos-delay="200"><a href="#about">About</a></li>
-                    <li data-aos="fade-down" data-aos-delay="225"><a href="#resume">Resume</a></li>
-                    <li data-aos="fade-down" data-aos-delay="250"><a href="#skills">Skills</a></li>
+                    <li data-aos="fade-down" data-aos-delay="100"><a href="#about">About</a></li>
+                    <li data-aos="fade-down" data-aos-delay="200"><a href="#skills">Skills</a></li>
                     <li data-aos="fade-down" data-aos-delay="300"><a href="#services">Services</a></li>
-                    <li data-aos="fade-down" data-aos-delay="350"><a href="#process">Process</a></li>
                     <li data-aos="fade-down" data-aos-delay="400"><a href="#portfolio">Portfolio</a></li>
                     <li data-aos="fade-down" data-aos-delay="500"><a href="#contact">Contact</a></li>
                     <li data-aos="fade-down" data-aos-delay="600" class="theme-toggle-wrapper">
@@ -2613,7 +2754,7 @@
                     </div>
                 </div>
                 <div class="hero-image" data-aos="fade-left" data-aos-delay="300">
-                    <a href="https://ibb.co/VnCzjFF"><img src="https://i.ibb.co/dCpVWNN/Adobe-Express-file-2.png" alt="Adobe-Express-file-2" border="2"></a>
+                    <a href="https://ibb.co/VnCzjFF"><img src="https://i.ibb.co/dCpVWNN/Adobe-Express-file-2.png" alt="Adobe-Express-file-2" border="2" loading="lazy"></a>
                 </div>
             </div>
         </div>
@@ -2628,7 +2769,7 @@
             </div>
             <div class="about-content">
                 <div class="about-image" data-aos="fade-right" data-aos-delay="100">
-                    <img src="https://i.pinimg.com/1200x/b3/be/3a/b3be3a3d7253c5e0d796574cae5a3391.jpg" alt="Profile Picture" />
+                    <img src="https://i.pinimg.com/1200x/b3/be/3a/b3be3a3d7253c5e0d796574cae5a3391.jpg" alt="Profile Picture" loading="lazy" />
                 </div>
                 <div class="about-text" data-aos="fade-left" data-aos-delay="200">
                     <h3>A passionate Web Developer based in Your Location</h3>
@@ -2963,7 +3104,7 @@
                 </div>
                 <div class="portfolio-item" data-category="app" data-aos="zoom-in" data-aos-delay="200">
                     <div class="portfolio-img">
-                        <img src="https://i.pinimg.com/1200x/49/5d/c9/495dc90e43fe0dca8f28fd53d01d8da7.jpg" alt="Project Two">
+                        <img src="https://i.pinimg.com/1200x/49/5d/c9/495dc90e43fe0dca8f28fd53d01d8da7.jpg" alt="Project Two" loading="lazy">
                     </div>
                     <div class="portfolio-info">
                         <h3 class="animate__animated animate__fadeInUp">Project Two</h3>
@@ -2973,7 +3114,7 @@
                 </div>
                 <div class="portfolio-item" data-category="ui" data-aos="zoom-in" data-aos-delay="300">
                     <div class="portfolio-img">
-                        <img src="https://i.pinimg.com/1200x/c8/58/e2/c858e2b25675f82da52c284e0510a151.jpg" alt="Project Three">
+                        <img src="https://i.pinimg.com/1200x/c8/58/e2/c858e2b25675f82da52c284e0510a151.jpg" alt="Project Three" loading="lazy">
                     </div>
                     <div class="portfolio-info">
                         <h3 class="animate__animated animate__fadeInUp">Project Three</h3>
@@ -2983,7 +3124,7 @@
                 </div>
                 <div class="portfolio-item" data-category="web">
                     <div class="portfolio-img">
-                        <img src="https://i.pinimg.com/1200x/5b/ef/14/5bef147ca7b631f70c6d6e4c392cea3b.jpg" alt="Project Four">
+                        <img src="https://i.pinimg.com/1200x/5b/ef/14/5bef147ca7b631f70c6d6e4c392cea3b.jpg" alt="Project Four" loading="lazy">
                     </div>
                     <div class="portfolio-info">
                         <h3>Project Four</h3>
@@ -3088,9 +3229,7 @@
             <div class="footer-content" data-aos="fade-in" data-aos-delay="100">
                 <p>&copy; 2023 Arup Bhattacharya. All Rights Reserved.</p>
                 <div class="footer-links">
-                    <a href="#header">Home</a>
                     <a href="#about">About</a>
-                    <a href="#resume">Resume</a>
                     <a href="#skills">Skills</a>
                     <a href="#services">Services</a>
                     <a href="#portfolio">Portfolio</a>
@@ -3615,4 +3754,4 @@
         });
     </script>
 </body>
-</html
+</html>
