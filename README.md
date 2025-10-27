@@ -38,4 +38,4 @@ This portfolio website uses EmailJS to send contact form messages directly to yo
    - Submit the form
    - Check your email to confirm receipt
 
-Your contact form should now send messages directly to your email address (aruobhattacharya450@gmail.com).
+Your contact form should now send messages directly to your email address (arupbhattacharya450@gmail.com).
